@@ -1,4 +1,4 @@
-# Go to Python
+# Go improves Python?
 
 This project is based on [this project](https://github.com/rochacbruno/rust-python-example) created by @rochacbruno. But this project uses [Golang](https://golang.org/) rather than [Rustlang](https://www.rust-lang.org).
 
@@ -20,10 +20,12 @@ Sum sequences (list, tuple, generator.. etc) of numbers.
 
 # Run
 
-Create your virtualenv directory:
+Create your virtualenv directory: 
+
+- IMPORTANT RECOMENDATION: use your Python3.5 from O.S.):
 
 ```
-python3 -m venv .venv
+/usr/bin/python3.5 -m venv .venv
 ```
 
 Activate your venv:
@@ -38,9 +40,4 @@ Install requirements:
 pip install requirements.txt
 ```
 
-Run:
-
-```
-py.test -v -s run.py
-```
-
+[More instructions will be added in the future]
