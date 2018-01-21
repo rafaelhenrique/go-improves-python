@@ -34,12 +34,12 @@ typedef enum _PyBindGenWrapperFlags {
 #endif
 
 
-#include "sum_numbers.h"
+#include "gosum.h"
 /* --- module functions --- */
 
 
 PyObject *
-_wrap_gosum_SumSlicePy(PyObject * PYBINDGEN_UNUSED(dummy), PyObject *args, PyObject *kwargs)
+_wrap_gosum_module_SumSlicePy(PyObject * PYBINDGEN_UNUSED(dummy), PyObject *args, PyObject *kwargs)
 {
     PyObject *py_retval;
     int retval;
@@ -54,19 +54,19 @@ _wrap_gosum_SumSlicePy(PyObject * PYBINDGEN_UNUSED(dummy), PyObject *args, PyObj
     py_retval = Py_BuildValue((char *) "i", retval);
     return py_retval;
 }
-PyObject * _wrap_gosum_SumSlicePy(PyObject * PYBINDGEN_UNUSED(dummy), PyObject *args, PyObject *kwargs);
+PyObject * _wrap_gosum_module_SumSlicePy(PyObject * PYBINDGEN_UNUSED(dummy), PyObject *args, PyObject *kwargs);
 
-static PyMethodDef gosum_functions[] = {
-    {(char *) "SumSlicePy", (PyCFunction) _wrap_gosum_SumSlicePy, METH_KEYWORDS|METH_VARARGS, "SumSlicePy(slice)\n\ntype: slice: PyObject *" },
+static PyMethodDef gosum_module_functions[] = {
+    {(char *) "SumSlicePy", (PyCFunction) _wrap_gosum_module_SumSlicePy, METH_KEYWORDS|METH_VARARGS, "SumSlicePy(slice)\n\ntype: slice: PyObject *" },
     {NULL, NULL, 0, NULL}
 };
 #if PY_VERSION_HEX >= 0x03000000
-static struct PyModuleDef gosum_moduledef = {
+static struct PyModuleDef gosum_module_moduledef = {
     PyModuleDef_HEAD_INIT,
-    "gosum",
+    "gosum_module",
     NULL,
     -1,
-    gosum_functions,
+    gosum_module_functions,
 };
 #endif
 
@@ -88,13 +88,13 @@ __attribute__ ((visibility("default")))
 #endif
 
 
-MOD_INIT(gosum)
+MOD_INIT(gosum_module)
 {
     PyObject *m;
     #if PY_VERSION_HEX >= 0x03000000
-    m = PyModule_Create(&gosum_moduledef);
+    m = PyModule_Create(&gosum_module_moduledef);
     #else
-    m = Py_InitModule3((char *) "gosum", gosum_functions, NULL);
+    m = Py_InitModule3((char *) "gosum_module", gosum_module_functions, NULL);
     #endif
     if (m == NULL) {
         return MOD_ERROR;

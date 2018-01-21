@@ -5,7 +5,7 @@
 /* Start of preamble from import "C" comments.  */
 
 
-#line 3 "/home/rafael/repositorios_git/go_work/src/github.com/rafaelhenrique/find_cnpj/go_version/sum_numbers.go"
+#line 3 "/home/rafael/repositorios_git/go_work/src/github.com/rafaelhenrique/go-improves-python/go_version/gosum.go"
 
  #define Py_LIMITED_API
  #include <Python.h>

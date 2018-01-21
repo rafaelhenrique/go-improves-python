@@ -1,8 +1,8 @@
 from pybindgen import retval, param, Module
 import sys
 
-mod = Module('gosum')
-mod.add_include('"sum_numbers.h"')
+mod = Module('gosum_module')
+mod.add_include('"gosum.h"')
 mod.add_function(
     'SumSlicePy',
     retval('int'),
