@@ -13,6 +13,7 @@ func makeRange(minimum, maximum int) []int {
 	return slice
 }
 
+//export SumSlice
 func SumSlice(slice []int) (total int) {
 
 	for _, value := range slice {
