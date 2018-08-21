@@ -1,3 +1,4 @@
+from gosum_module import SumSlicePy
 from ctypes import POINTER, Structure, c_longlong, c_void_p, cdll
 
 
@@ -22,5 +23,9 @@ def test_python_sum(benchmark):
     benchmark(sum, numbers)
 
 
-def test_golang_sum(benchmark):
+def test_golang_ctypes_sum(benchmark):
     benchmark(gosum.SumSlice, List(numbers))
+
+
+def test_golang_module_sum(benchmark):
+    benchmark(SumSlicePy, numbers)
