@@ -16,3 +16,6 @@ clean:
 	@echo "--> Cleaning C files"
 	@rm -rf *.c *.h *.so 
 
+benchmark: 
+	@LD_LIBRARY_PATH="." pytest .
+

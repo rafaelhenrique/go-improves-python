@@ -1,6 +1,3 @@
-test: 
-	@LD_LIBRARY_PATH="./go_version/" py.test go_version/sum_numbers.py
-
 clean:
 	@echo "--> Cleaning pyc files"
 	@find . -name "*.pyc" | xargs rm -rf
