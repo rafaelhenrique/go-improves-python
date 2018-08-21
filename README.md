@@ -6,7 +6,7 @@ This project has only one objective, which use Golang with Python as a possibili
 
 # Comparisons between Python and Go
 
-## regex
+## find_cnpj
 
 Locate CNPJ number with regex.
 
@@ -20,7 +20,7 @@ Sum sequences (list, tuple, generator.. etc) of numbers.
 
 Create your virtualenv directory: 
 
-- IMPORTANT RECOMENDATION: use your Python3.6 from O.S.):
+- IMPORTANT RECOMENDATION: use your Python3.6 from O.S.
 
 ```
 /usr/bin/python3.6 -m venv .venv
