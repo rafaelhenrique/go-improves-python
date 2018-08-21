@@ -20,12 +20,15 @@ numbers = range(0, 100)
 
 
 def test_python_sum(benchmark):
+    """Built-in Python sum function"""
     benchmark(sum, numbers)
 
 
 def test_golang_ctypes_sum(benchmark):
+    """Using SumSlice by ctypes"""
     benchmark(gosum.SumSlice, List(numbers))
 
 
 def test_golang_module_sum(benchmark):
+    """Using SumSlicePy by gosum_module"""
     benchmark(SumSlicePy, numbers)
