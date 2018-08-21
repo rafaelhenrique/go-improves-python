@@ -38,8 +38,6 @@ Install requirements:
 pip install -r requirements.txt
 ```
 
-[More instructions will be added in the future]
-
 # Tips and tricks
 
 ## Finding python version on pkg-config
@@ -54,3 +52,5 @@ python2                   Python - Python library
 python3                   Python - Python library
 notify-python             notify-python - Python bindings for libnotify
 ```
+
+[More instructions will be added in the future.... in-progress]
