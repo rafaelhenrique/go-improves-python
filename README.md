@@ -39,3 +39,18 @@ pip install requirements.txt
 ```
 
 [More instructions will be added in the future]
+
+# Tips and tricks
+
+## Finding python version on pkg-config
+
+```
+$ pkg-config --list-all | grep python
+python-3.6m               Python - Python library
+python-2.7                Python - Python library
+python                    Python - Python library
+python-3.6                Python - Python library
+python2                   Python - Python library
+python3                   Python - Python library
+notify-python             notify-python - Python bindings for libnotify
+```
