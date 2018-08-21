@@ -1,5 +1,5 @@
-from gosum_module import SumSlicePy
 from ctypes import POINTER, Structure, c_longlong, c_void_p, cdll
+from gosum_module import SumSlicePy
 
 
 class GoSlice(Structure):
@@ -32,3 +32,15 @@ def test_golang_ctypes_sum(benchmark):
 def test_golang_module_sum(benchmark):
     """Using SumSlicePy by gosum_module"""
     benchmark(SumSlicePy, numbers)
+
+
+def test_python_sum_result(numbers):
+    assert sum(numbers) == 4950
+
+
+def test_golang_ctypes_sum_result(numbers):
+    assert gosum.SumSlice(List(numbers)) == 4950
+
+
+def test_golang_module_sum_result(numbers):
+    assert SumSlicePy(numbers) == 4950

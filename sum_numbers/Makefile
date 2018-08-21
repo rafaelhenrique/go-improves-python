@@ -23,5 +23,8 @@ clean:
 	@find . -name ".benchmarks" -type d | xargs rm -rf
 
 benchmark: 
-	@LD_LIBRARY_PATH="." pytest .
+	@LD_LIBRARY_PATH="." pytest --benchmark-only
+
+test:
+	@LD_LIBRARY_PATH="." pytest --benchmark-skip
 
