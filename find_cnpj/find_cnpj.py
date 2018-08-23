@@ -2,7 +2,7 @@ import re
 
 # Real data about CNPJ - too slow, too large and not versioned
 #
-# with open('F.K03200UF.D71214SP', 'r', encoding='iso8859') as fp:
+# with open('./data/F.K03200UF.D71214SP', 'r', encoding='iso8859') as fp:
 #     content = fp.read()
 
 with open('./data/MINIMAL', 'r', encoding='iso8859') as fp:
@@ -12,6 +12,10 @@ with open('./data/MINIMAL', 'r', encoding='iso8859') as fp:
 company_name = 'CARGOBR INTERMEDIACAO E AGENCIAMENTO DE NEGOCIOS S/A'
 expression = r'\d{{2}}(\d{{14}}).*{}.*'.format(company_name)
 pattern = re.compile(expression)
+
+
+def find_cnpj_using_in(content, company_name):
+    return next(line for line in content.split('\n') if company_name in line)
 
 
 def find_cnpj_using_search(content, company_name):
@@ -28,3 +32,9 @@ def test_find_cnpj_using_search(benchmark):
 
 def test_find_cnpj_using_findall(benchmark):
     benchmark(find_cnpj_using_findall, content, company_name)
+
+
+if __name__ == '__main__':
+    print(find_cnpj_using_in(content, company_name))
+    print(find_cnpj_using_search(content, company_name))
+    print(find_cnpj_using_findall(content, company_name))
