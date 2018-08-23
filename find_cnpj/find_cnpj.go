@@ -1,28 +1,43 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"regexp"
 )
 
-func main() {
-	// Real data about CNPJ - too slow, too large and not versioned
+// #cgo pkg-config: python-3.6
+// #define Py_LIMITED_API
+// #include <Python.h>
+
+//export FindCnpjByRegex
+func FindCnpjByRegex(company string) (cnpj string, err error) {
+	// Real data about CNPJ - too slow (~2min), too large and not versioned
 	//
 	// file, err := ioutil.ReadFile("./data/F.K03200UF.D71214SP")
 	file, err := ioutil.ReadFile("./data/MINIMAL")
 	if err != nil {
-		fmt.Println("[main] Error to open file. Error: ", err.Error())
+		return "", fmt.Errorf("findCnpjByRegex: error to open file. Error: %v", err.Error())
 	}
 
-	pattern := regexp.MustCompile(`\d{2}(\d{14}).*CARGOBR INTERMEDIACAO E AGENCIAMENTO DE NEGOCIOS S/A.*`)
+	pattern := regexp.MustCompile(`\d{2}(\d{14}).*` + company + `.*`)
 	content := string(file)
 	result := pattern.FindStringSubmatch(content)
 
-	if len(result) > 0 {
-		fmt.Printf("CNPJ: %s\n", result[1])
-	} else {
-		fmt.Println("Not found!")
+	if len(result) == 0 {
+		return "", errors.New("findCnpjByRegex: company not found")
 	}
 
+	return result[1], nil
+}
+
+func main() {
+	cnpj, err := FindCnpjByRegex("CARGOBR INTERMEDIACAO E AGENCIAMENTO DE NEGOCIOS S/A")
+
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("CNPJ: " + cnpj)
+	}
 }
