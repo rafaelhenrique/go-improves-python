@@ -19,7 +19,7 @@ func FindCnpjByRegex(company string) (cnpj string, err error) {
 	// file, err := ioutil.ReadFile("./data/F.K03200UF.D71214SP")
 	file, err := ioutil.ReadFile("./data/MINIMAL")
 	if err != nil {
-		return "", fmt.Errorf("findCnpjByRegex: error to open file. Error: %v", err.Error())
+		return "", fmt.Errorf("FindCnpjByRegex: error to open file. Error: %v", err.Error())
 	}
 
 	pattern := regexp.MustCompile(`\d{2}(\d{14}).*` + company + `.*`)
@@ -27,7 +27,7 @@ func FindCnpjByRegex(company string) (cnpj string, err error) {
 	result := pattern.FindStringSubmatch(content)
 
 	if len(result) == 0 {
-		return "", errors.New("findCnpjByRegex: company not found")
+		return "", errors.New("FindCnpjByRegex: company not found")
 	}
 
 	return result[1], nil
