@@ -45,7 +45,7 @@ func main() {
 	// file, err := ioutil.ReadFile("./data/F.K03200UF.D71214SP")
 	file, err := ioutil.ReadFile("./data/MINIMAL")
 	if err != nil {
-		fmt.Errorf("Error to open file. Error: %v", err.Error())
+		fmt.Printf("Error to open file. Error: %v\n", err.Error())
 	}
 	content := string(file)
 
