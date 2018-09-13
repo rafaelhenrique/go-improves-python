@@ -13,17 +13,8 @@ import (
 // #include <Python.h>
 
 //export FindCnpjByRegex
-func FindCnpjByRegex(company string) (cnpj string, err error) {
-	// Real data about CNPJ - too slow (~2min), too large and not versioned
-	//
-	// file, err := ioutil.ReadFile("./data/F.K03200UF.D71214SP")
-	file, err := ioutil.ReadFile("./data/MINIMAL")
-	if err != nil {
-		return "", fmt.Errorf("FindCnpjByRegex: error to open file. Error: %v", err.Error())
-	}
-
+func FindCnpjByRegex(content, company string) (cnpj string, err error) {
 	pattern := regexp.MustCompile(`\d{2}(\d{14}).*` + company + `.*`)
-	content := string(file)
 	result := pattern.FindStringSubmatch(content)
 
 	if len(result) == 0 {
@@ -34,16 +25,7 @@ func FindCnpjByRegex(company string) (cnpj string, err error) {
 }
 
 //export FindCnpjByContains
-func FindCnpjByContains(company string) (cnpj string, err error) {
-	// Real data about CNPJ - too slow (~2sec), too large and not versioned
-	//
-	// file, err := ioutil.ReadFile("./data/F.K03200UF.D71214SP")
-	file, err := ioutil.ReadFile("./data/MINIMAL")
-	if err != nil {
-		return "", fmt.Errorf("FindCnpjByContains: error to open file. Error: %v", err.Error())
-	}
-
-	content := string(file)
+func FindCnpjByContains(content, company string) (cnpj string, err error) {
 	splitedContent := strings.Split(content, "\n")
 
 	lineNumber := 1
@@ -58,17 +40,26 @@ func FindCnpjByContains(company string) (cnpj string, err error) {
 }
 
 func main() {
-	cnpj, err := FindCnpjByRegex("CARGOBR INTERMEDIACAO E AGENCIAMENTO DE NEGOCIOS S/A")
+	// Real data about CNPJ - too slow (~2min), too large and not versioned
+	//
+	// file, err := ioutil.ReadFile("./data/F.K03200UF.D71214SP")
+	file, err := ioutil.ReadFile("./data/MINIMAL")
 	if err != nil {
-		fmt.Println(err)
+		fmt.Errorf("Error to open file. Error: %v", err.Error())
+	}
+	content := string(file)
+
+	cnpj, err := FindCnpjByRegex(content, "CARGOBR INTERMEDIACAO E AGENCIAMENTO DE NEGOCIOS S/A")
+	if err != nil {
+		fmt.Errorf("FindCnpjByRegex error: %v", err.Error())
 	} else {
-		fmt.Println("CNPJ: " + cnpj)
+		fmt.Println("FindCnpjByRegex result: " + cnpj)
 	}
 
-	cnpj, err = FindCnpjByContains("CARGOBR INTERMEDIACAO E AGENCIAMENTO DE NEGOCIOS S/A")
+	cnpj, err = FindCnpjByContains(content, "CARGOBR INTERMEDIACAO E AGENCIAMENTO DE NEGOCIOS S/A")
 	if err != nil {
-		fmt.Println(err)
+		fmt.Errorf("FindCnpjByContains error: %v", err.Error())
 	} else {
-		fmt.Println("CNPJ: " + cnpj)
+		fmt.Println("FindCnpjByContains result: " + cnpj)
 	}
 }
