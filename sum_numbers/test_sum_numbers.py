@@ -1,4 +1,7 @@
 from ctypes import POINTER, Structure, c_longlong, c_void_p, cdll
+
+import pytest
+
 from gosum_module import SumSlicePy
 
 
@@ -16,20 +19,23 @@ gosum = cdll.LoadLibrary("./gosum.so")
 gosum.SumSlice.argtypes = [GoSlice]
 gosum.SumSlice.restype = c_longlong
 
-numbers = range(0, 100)
+
+@pytest.fixture
+def numbers():
+    return range(0, 100)
 
 
-def test_python_sum(benchmark):
+def test_python_sum(benchmark, numbers):
     """Built-in Python sum function"""
     benchmark(sum, numbers)
 
 
-def test_golang_ctypes_sum(benchmark):
+def test_golang_ctypes_sum(benchmark, numbers):
     """Using SumSlice by ctypes"""
     benchmark(gosum.SumSlice, List(numbers))
 
 
-def test_golang_module_sum(benchmark):
+def test_golang_module_sum(benchmark, numbers):
     """Using SumSlicePy by gosum_module"""
     benchmark(SumSlicePy, numbers)
 
