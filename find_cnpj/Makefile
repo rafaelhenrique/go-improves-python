@@ -1,3 +1,15 @@
+PYTHON_NAME = "gofindcnpj"
+GO_NAME = "find_cnpj"
+CFLAGS = `python3.6-config --cflags`
+LDFLAGS = `python3.6-config --ldflags`
+
+# Use when necessary
+# PKG_CONFIG_PATH = "${PKG_CONFIG_PATH}:/home/rafael/.pyenv/versions/3.7.0/lib/pkgconfig"
+
+build: SHELL:=/bin/bash
+build: clean
+	@echo "--> Recreate .so module"
+	@go build -buildmode=c-shared -o ${PYTHON_NAME}.so ${GO_NAME}.go
 
 clean:
 	@echo "--> Cleaning C files"
