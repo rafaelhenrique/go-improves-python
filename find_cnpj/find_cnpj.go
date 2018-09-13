@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"io/ioutil"
 	"regexp"
@@ -11,32 +10,33 @@ import (
 // #cgo pkg-config: python-3.6
 // #define Py_LIMITED_API
 // #include <Python.h>
+import "C"
 
 //export FindCnpjByRegex
-func FindCnpjByRegex(content, company string) (cnpj string, err error) {
+func FindCnpjByRegex(content, company string) (cnpj string) {
 	pattern := regexp.MustCompile(`\d{2}(\d{14}).*` + company + `.*`)
 	result := pattern.FindStringSubmatch(content)
 
 	if len(result) == 0 {
-		return "", errors.New("FindCnpjByRegex: company not found")
+		return
 	}
 
-	return result[1], nil
+	return result[1]
 }
 
 //export FindCnpjByContains
-func FindCnpjByContains(content, company string) (cnpj string, err error) {
+func FindCnpjByContains(content, company string) (cnpj string) {
 	splitedContent := strings.Split(content, "\n")
 
 	lineNumber := 1
 	for _, line := range splitedContent {
 		if strings.Contains(line, company) {
-			return line, nil
+			return line
 		}
 		lineNumber++
 	}
 
-	return "", errors.New("FindCnpjByContains: company not found")
+	return
 }
 
 func main() {
@@ -49,17 +49,9 @@ func main() {
 	}
 	content := string(file)
 
-	cnpj, err := FindCnpjByRegex(content, "CARGOBR INTERMEDIACAO E AGENCIAMENTO DE NEGOCIOS S/A")
-	if err != nil {
-		fmt.Errorf("FindCnpjByRegex error: %v", err.Error())
-	} else {
-		fmt.Println("FindCnpjByRegex result: " + cnpj)
-	}
+	cnpj := FindCnpjByRegex(content, "CARGOBR INTERMEDIACAO E AGENCIAMENTO DE NEGOCIOS S/A")
+	fmt.Println("FindCnpjByRegex result: " + cnpj)
 
-	cnpj, err = FindCnpjByContains(content, "CARGOBR INTERMEDIACAO E AGENCIAMENTO DE NEGOCIOS S/A")
-	if err != nil {
-		fmt.Errorf("FindCnpjByContains error: %v", err.Error())
-	} else {
-		fmt.Println("FindCnpjByContains result: " + cnpj)
-	}
+	cnpj = FindCnpjByContains(content, "CARGOBR INTERMEDIACAO E AGENCIAMENTO DE NEGOCIOS S/A")
+	fmt.Println("FindCnpjByContains result: " + cnpj)
 }
