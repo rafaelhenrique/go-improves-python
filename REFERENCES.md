@@ -31,10 +31,6 @@
 
 - https://swtch.com/~rsc/regexp/regexp1.html
 
-## Benchmarks
-
-- http://benchmarksgame.alioth.debian.org/u64q/compare.php?lang=go&lang2=python3
-
 # Cool references about sum "arrays" (Python and Go)
 
 ## Hackernoon
@@ -57,6 +53,25 @@
 
 - https://gist.github.com/shockalotti/d01ab9540c32458f0703
 
+# "Generic" references
+
+## Comparison between languages
+
+- https://benchmarksgame-team.pages.debian.net/benchmarksgame/
+
 ## Github
 
 - https://github.com/sbinet/go-python
+- https://github.com/vladimirvivien/go-cshared-examples/blob/master/client.py
+
+## cgo is not Go
+
+- https://dave.cheney.net/2016/01/18/cgo-is-not-go
+
+## How to write benchmarks in Go
+
+- https://dave.cheney.net/2013/06/30/how-to-write-benchmarks-in-go
+
+## PyBindGen - Code generation script
+
+- https://pythonhosted.org/PyBindGen/tutorial.html#code-generation-script
