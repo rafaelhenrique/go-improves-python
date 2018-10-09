@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"regexp"
+	"strconv"
 	"strings"
 )
 
@@ -25,33 +26,32 @@ func FindCnpjByRegex(content, company string) (cnpj string) {
 }
 
 //export FindCnpjByContains
-func FindCnpjByContains(content, company string) (cnpj string) {
+func FindCnpjByContains(content, company string) (cnpj int) {
 	splitedContent := strings.Split(content, "\n")
 
-	lineNumber := 1
 	for _, line := range splitedContent {
 		if strings.Contains(line, company) {
-			return line
+			cnpj, _ = strconv.Atoi(line[2:16])
+			return
 		}
-		lineNumber++
 	}
 
 	return
 }
 
 func main() {
-	// Real data about CNPJ - too slow (~2min), too large and not versioned
+	// Real data about CNPJ - too slow, too large and not versioned
 	//
-	// file, err := ioutil.ReadFile("./data/F.K03200UF.D71214SP")
+	// file, err := ioutil.ReadFile("./data/F.K03200UF.D71214PR")
 	file, err := ioutil.ReadFile("./data/MINIMAL")
 	if err != nil {
 		fmt.Printf("Error to open file. Error: %v\n", err.Error())
 	}
 	content := string(file)
 
-	cnpj := FindCnpjByRegex(content, "CARGOBR INTERMEDIACAO E AGENCIAMENTO DE NEGOCIOS S/A")
-	fmt.Println("FindCnpjByRegex result: " + cnpj)
+	strCnpj := FindCnpjByRegex(content, "OLIST SERVICOS DIGITAIS LTDA")
+	fmt.Printf("FindCnpjByRegex result: %s\n", strCnpj)
 
-	cnpj = FindCnpjByContains(content, "CARGOBR INTERMEDIACAO E AGENCIAMENTO DE NEGOCIOS S/A")
-	fmt.Println("FindCnpjByContains result: " + cnpj)
+	intCnpj := FindCnpjByContains(content, "OLIST SERVICOS DIGITAIS LTDA")
+	fmt.Printf("FindCnpjByContains result: %d\n", intCnpj)
 }
