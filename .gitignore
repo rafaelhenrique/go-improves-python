@@ -2,3 +2,5 @@ __pycache__
 .venv
 .cache
 .pytest_cache/
+find_cnpj/data/F.K03200UF.D71214PR
+find_cnpj/data/F.K03200UF.D71214SP
