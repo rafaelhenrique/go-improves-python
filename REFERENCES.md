@@ -35,11 +35,11 @@
 
 ## Hackernoon
 
-- https://hackernoon.com/extending-python-3-in-go-78f3a69552ac
+- [Extending Python 3 in Go](https://hackernoon.com/extending-python-3-in-go-78f3a69552ac)
 
 ## Medium
 
-- https://medium.com/learning-the-go-programming-language/calling-go-functions-from-other-languages-4c7d8bcc69bf
+- [Calling Go Functions from Other Languages](https://medium.com/learning-the-go-programming-language/calling-go-functions-from-other-languages-4c7d8bcc69bf)
 
 ## Reddit
 
@@ -55,6 +55,10 @@
 
 # "Generic" references
 
+## Grumpy
+
+- https://opensource.googleblog.com/2017/01/grumpy-go-running-python.html
+
 ## Comparison between languages
 
 - https://benchmarksgame-team.pages.debian.net/benchmarksgame/
@@ -62,6 +66,7 @@
 ## Github
 
 - https://github.com/sbinet/go-python
+- https://github.com/go-python/gopy
 - https://github.com/vladimirvivien/go-cshared-examples/blob/master/client.py
 
 ## cgo is not Go
@@ -75,3 +80,7 @@
 ## PyBindGen - Code generation script
 
 - https://pythonhosted.org/PyBindGen/tutorial.html#code-generation-script
+
+# Book
+
+- https://www.gopl.io/
