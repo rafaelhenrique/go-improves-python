@@ -17,7 +17,7 @@ typedef struct { const char *p; ptrdiff_t n; } _GoString_;
 /* Start of preamble from import "C" comments.  */
 
 
-#line 10 "find_cnpj.go"
+#line 11 "main.go"
 
  #define Py_LIMITED_API
  #include <Python.h>
@@ -73,7 +73,7 @@ extern "C" {
 
 extern GoString FindCnpjByRegex(GoString p0, GoString p1);
 
-extern GoString FindCnpjByContains(GoString p0, GoString p1);
+extern GoInt FindCnpjByContains(GoString p0, GoString p1);
 
 #ifdef __cplusplus
 }
