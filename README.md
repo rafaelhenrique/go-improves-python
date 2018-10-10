@@ -8,7 +8,7 @@ This project has only one objective, which use Golang with Python as a possibili
 
 ## find_cnpj
 
-Locate CNPJ number with regex.
+Locate CNPJ number based on company name.
 
 - Data from CNPJ downloaded from this [link](http://idg.receita.fazenda.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/dados-abertos-do-cnpj).
 
@@ -18,9 +18,9 @@ Sum sequences (list, tuple, generator.. etc) of numbers.
 
 # Run
 
-Create your virtualenv directory: 
+Create your virtualenv directory:
 
-- IMPORTANT RECOMENDATION: use your Python3.6 from O.S.
+- IMPORTANT RECOMENDATION: use your Python3.6 (native, without pyenv or similar) from O.S.
 
 ```
 /usr/bin/python3.6 -m venv .venv
@@ -52,5 +52,3 @@ python2                   Python - Python library
 python3                   Python - Python library
 notify-python             notify-python - Python bindings for libnotify
 ```
-
-[More instructions will be added in the future.... in-progress]
