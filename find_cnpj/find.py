@@ -24,11 +24,11 @@ if __name__ == '__main__':
     # with open('./data/F.K03200UF.D71214PR', 'r', encoding='iso8859') as fp:
     #     content = fp.read()
 
-    with open('./data/MINIMAL', 'r', encoding='iso8859') as fp:
+    with open('./data/F.K03200UF.D71214PR', 'r', encoding='iso8859') as fp:
         content = fp.read()
 
     company_name = 'OLIST SERVICOS DIGITAIS LTDA'
 
-    print("find_cnpj_using_in result: ", find_cnpj_using_in(content, company_name))
+    # print("find_cnpj_using_in result: ", find_cnpj_using_in(content, company_name))
     print("find_cnpj_using_search result: ", find_cnpj_using_search(content, company_name))
-    print("find_cnpj_using_findall result: ", find_cnpj_using_findall(content, company_name))
+    # print("find_cnpj_using_findall result: ", find_cnpj_using_findall(content, company_name))
