@@ -14,8 +14,12 @@ class GoString(Structure):
 
 
 gofindcnpj = cdll.LoadLibrary("./gofindcnpj.so")
+
 gofindcnpj.FindCnpjByContains.argtypes = [GoString, GoString]
 gofindcnpj.FindCnpjByContains.restype = c_longlong
+
+gofindcnpj.FindCnpjByRegex.argtypes = [GoString, GoString]
+gofindcnpj.FindCnpjByRegex.restype = c_longlong
 
 
 #
@@ -45,6 +49,14 @@ def profile_mem_golang_ctypes_find_cnpj_contains(content, company_name):
     )
 
 
+@profile
+def profile_mem_golang_ctypes_find_cnpj_regex(content, company_name):
+    return gofindcnpj.FindCnpjByRegex(
+        GoString(new_content, len(new_content)),
+        GoString(new_company_name, len(new_company_name)),
+    )
+
+
 if __name__ == '__main__':
     # Real data about CNPJ - too slow, too large and not versioned
     #
@@ -62,3 +74,4 @@ if __name__ == '__main__':
     profile_mem_find_cnpj_using_search(content, company_name)
     profile_mem_find_cnpj_using_findall(content, company_name)
     profile_mem_golang_ctypes_find_cnpj_contains(new_content, new_company_name)
+    profile_mem_golang_ctypes_find_cnpj_regex(new_content, new_company_name)

@@ -71,7 +71,7 @@ extern "C" {
 #endif
 
 
-extern GoString FindCnpjByRegex(GoString p0, GoString p1);
+extern GoInt FindCnpjByRegex(GoString p0, GoString p1);
 
 extern GoInt FindCnpjByContains(GoString p0, GoString p1);
 

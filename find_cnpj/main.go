@@ -14,7 +14,7 @@ import (
 import "C"
 
 //export FindCnpjByRegex
-func FindCnpjByRegex(content, company string) (cnpj string) {
+func FindCnpjByRegex(content, company string) (cnpj int) {
 	pattern := regexp.MustCompile(`\d{2}(\d{14}).*` + company + `.*`)
 	result := pattern.FindStringSubmatch(content)
 
@@ -22,7 +22,8 @@ func FindCnpjByRegex(content, company string) (cnpj string) {
 		return
 	}
 
-	return result[1]
+	cnpj, _ = strconv.Atoi(result[1])
+	return
 }
 
 //export FindCnpjByContains
@@ -49,9 +50,9 @@ func main() {
 	}
 	content := string(file)
 
-	strCnpj := FindCnpjByRegex(content, "OLIST SERVICOS DIGITAIS LTDA")
-	fmt.Printf("FindCnpjByRegex result: %s\n", strCnpj)
+	cnpj := FindCnpjByRegex(content, "OLIST SERVICOS DIGITAIS LTDA")
+	fmt.Printf("FindCnpjByRegex result: %d\n", cnpj)
 
-	intCnpj := FindCnpjByContains(content, "OLIST SERVICOS DIGITAIS LTDA")
-	fmt.Printf("FindCnpjByContains result: %d\n", intCnpj)
+	cnpj = FindCnpjByContains(content, "OLIST SERVICOS DIGITAIS LTDA")
+	fmt.Printf("FindCnpjByContains result: %d\n", cnpj)
 }

@@ -12,8 +12,12 @@ class GoString(Structure):
 
 
 gofindcnpj = cdll.LoadLibrary("./gofindcnpj.so")
+
 gofindcnpj.FindCnpjByContains.argtypes = [GoString, GoString]
 gofindcnpj.FindCnpjByContains.restype = c_longlong
+
+gofindcnpj.FindCnpjByRegex.argtypes = [GoString, GoString]
+gofindcnpj.FindCnpjByRegex.restype = c_longlong
 
 
 #
@@ -40,3 +44,13 @@ def test_function_golang_ctypes_find_cnpj_contains_benchmark(benchmark, content,
     new_company_name = GoString(new_company_name, len(new_company_name))
 
     benchmark(gofindcnpj.FindCnpjByContains, new_content, new_company_name)
+
+
+def test_function_golang_ctypes_find_cnpj_regex_benchmark(benchmark, content, company_name):
+    new_content = bytes(content, 'utf-8')
+    new_company_name = bytes(company_name, 'utf-8')
+
+    new_content = GoString(new_content, len(new_content))
+    new_company_name = GoString(new_company_name, len(new_company_name))
+
+    benchmark(gofindcnpj.FindCnpjByRegex, new_content, new_company_name)
