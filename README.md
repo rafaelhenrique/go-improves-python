@@ -38,6 +38,20 @@ Install requirements:
 pip install -r requirements.txt
 ```
 
+Enter on directory of project (find_cnpj or sum_numbers), and run benchmarks:
+
+```
+cd <directory of project>
+# Recreate binary files
+make build
+# For unit tests
+make test  
+# For benchmark tests (time/operations)
+make benchmark
+# For memory profile
+make benchmark-memory
+```
+
 # Tips and tricks
 
 ## Finding python version on pkg-config
