@@ -1,3 +1,6 @@
+
+![image](https://user-images.githubusercontent.com/1902333/47128770-0dd10000-d269-11e8-89f5-e7f85a4f89ed.png)
+
 # Go improves Python?
 
 This project is based on [this project](https://github.com/rochacbruno/rust-python-example) created by @rochacbruno. But this project uses [Golang](https://golang.org/) rather than [Rustlang](https://www.rust-lang.org).
