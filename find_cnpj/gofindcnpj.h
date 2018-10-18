@@ -17,12 +17,6 @@ typedef struct { const char *p; ptrdiff_t n; } _GoString_;
 /* Start of preamble from import "C" comments.  */
 
 
-#line 11 "main.go"
-
- #define Py_LIMITED_API
- #include <Python.h>
-
-#line 1 "cgo-generated-wrapper"
 
 
 /* End of preamble from import "C" comments.  */
