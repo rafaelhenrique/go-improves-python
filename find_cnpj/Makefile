@@ -27,8 +27,9 @@ benchmark:
 benchmark-histogram:
 	@LD_LIBRARY_PATH="." pytest --benchmark-only --benchmark-histogram
 
-benchmark-memory:
-	@LD_LIBRARY_PATH="." python -m memory_profiler test_memory_profiling.py
+profile-memory:
+	@mprof clean
+	@LD_LIBRARY_PATH="." mprof run test_memory_profiling.py
 
 test:
 	@LD_LIBRARY_PATH="." pytest --benchmark-skip

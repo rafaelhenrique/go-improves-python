@@ -52,7 +52,7 @@ make test
 # For benchmark tests (time/operations)
 make benchmark
 # For memory profile
-make benchmark-memory
+make profile-memory
 ```
 
 # Tips and tricks
