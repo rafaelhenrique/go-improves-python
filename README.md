@@ -10,7 +10,7 @@ This project has only one objective, which use Golang with Python as a possibili
 
 Locate CNPJ number based on company name.
 
-- Data from CNPJ downloaded from this [link](http://idg.receita.fazenda.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/dados-abertos-do-cnpj).
+- CNPJ data downloaded from this [link](http://idg.receita.fazenda.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/dados-abertos-do-cnpj).
 
 ## sum_numbers
 
